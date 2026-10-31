@@ -1,0 +1,4 @@
+# Datos con información de clientes: nunca se suben al repo
+*.json
+*.xlsx
+!package.json
