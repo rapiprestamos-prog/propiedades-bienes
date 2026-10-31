@@ -21,6 +21,9 @@
      · La sesión dura 30 días desde el último uso (la página la mantiene viva mientras está abierta).
    ===================================================================== */
 
+// ID de la hoja de Google (lo que va entre /d/ y /edit en su dirección). Vacío = la hoja donde está pegado el script.
+var HOJA_ID = '';
+
 var CFG = {
   SESION_DIAS: 30,
   CLAVE_TEMP_HORAS: 72,
@@ -107,7 +110,7 @@ function soloAdmin_(u) { if (u.rol !== 'admin') throw fallo_('Solo el administra
 
 /* =========================== Hoja: utilidades =========================== */
 var CACHE_ = {};
-function libro_() { return SpreadsheetApp.getActiveSpreadsheet(); }
+function libro_() { return HOJA_ID ? SpreadsheetApp.openById(HOJA_ID) : SpreadsheetApp.getActiveSpreadsheet(); }
 function hoja_(nombre) {
   if (CACHE_[nombre]) return CACHE_[nombre];
   var sh = libro_().getSheetByName(nombre);
